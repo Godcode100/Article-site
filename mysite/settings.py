@@ -11,16 +11,23 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import dotenv #<-add this on 14th-Mar
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DIRS = os.path.join(BASE_DIR,'templates')
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
+# .env variables added 14th Mar
+dotenv_file = os.path.join(BASE_DIR,".env")
+if os.path.isfile(dotenv_file):
+    dotenv.load_dotenv(dotenv_file)
+
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'i7*y+@9v5df)vf8rgn-q77p*zt51yl*0f^n_*0ya8f+pq)od70'
+SECRET_KEY = os.environ['SECRET KEY'] #SECRET KEY AS OF 14th-Mar
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
